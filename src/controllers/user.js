@@ -45,7 +45,6 @@ module.exports = {
     const data = await User.findOne({ _id: req.params.id });
     res.status(200).send({
       error: false,
-      details: await res.getModelListDetails(User),
       data,
     });
   },

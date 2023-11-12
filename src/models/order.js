@@ -1,7 +1,6 @@
 "use strict";
 
 /* ------------------------------------------------------- */
-const e = require("express");
 
 const { mongoose } = require("../configs/dbConnection");
 /* ------------------------------------------------------- */

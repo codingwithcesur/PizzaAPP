@@ -2,8 +2,6 @@
 
 /* ------------------------------------------------------- */
 
-const e = require("express");
-
 const { mongoose } = require("../configs/dbConnection");
 /* ------------------------------------------------------- */
 // User Model:
