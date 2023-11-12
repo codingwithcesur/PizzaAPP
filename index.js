@@ -53,6 +53,9 @@ app.all("/", (req, res) => {
     user: req.user,
   });
 });
+
+// User:
+app.use("/users", require("./src/routes/user"));
 /* ------------------------------------------------------- */
 
 // errorHandler:
