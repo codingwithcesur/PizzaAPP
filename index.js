@@ -60,6 +60,9 @@ app.use("/users", require("./src/routes/user"));
 // Topping:
 app.use("/toppings", require("./src/routes/topping"));
 
+// Pizza:
+app.use("/pizzas", require("./src/routes/pizza"));
+
 // errorHandler:
 app.use(require("./src/middlewares/errorHandler"));
 
