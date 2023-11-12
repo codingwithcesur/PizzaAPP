@@ -1,7 +1,6 @@
 "use strict";
-/* -------------------------------------------------------
-    NODEJS EXPRESS | CLARUSWAY FullStack Team
-------------------------------------------------------- */
+
+/* ------------------------------------------------------- */
 // Topping Controller:
 const Topping = require("../models/topping");
 

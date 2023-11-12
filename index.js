@@ -1,13 +1,8 @@
 "use strict";
-/* -------------------------------------------------------
-    NODEJS EXPRESS | CLARUSWAY FullStack Team
-------------------------------------------------------- */
+
+/* ------------------------------------------------------- */
 /*
     $ mkdir logs
-    $ cp .env-sample .env
-    $ npm init -y
-    $ npm i express dotenv mongoose express-async-errors
-    $ npm i jsonwebtoken morgan
 */
 const express = require("express");
 const app = express();

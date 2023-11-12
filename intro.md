@@ -2,7 +2,7 @@
 
 ### ERD:
 
-![ERD](./erdPizzaAPI.png)
+![ERD](./Pizza-ERD.png)
 
 ### Folder/File Structure:
 
