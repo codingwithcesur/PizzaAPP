@@ -4,6 +4,7 @@
 // Auth Controller:
 
 const jwt = require("jsonwebtoken");
+const setToken = require("../helpers/setToken");
 
 const User = require("../models/user");
 
@@ -32,23 +33,9 @@ module.exports = {
 
       if (user) {
         if (user.isActive) {
-          const data = {
-            access: user.toJSON(),
-            refresh: { _id: user._id, password: user.password },
-            shortExpiresIn: "10m", // 10 minutes
-            longExpiresIn: "3d", // 3 days
-          };
-
           res.send({
             error: false,
-            token: {
-              access: jwt.sign(data.access, process.env.ACCESS_KEY, {
-                expiresIn: data.shortExpiresIn,
-              }),
-              refresh: jwt.sign(data.refresh, process.env.REFRESH_KEY, {
-                expiresIn: data.longExpiresIn,
-              }),
-            },
+            token: setToken(user),
           });
         } else {
           res.status(401).json({
@@ -100,21 +87,9 @@ module.exports = {
               const user = await User.findOne({ _id });
               if (user && user.password == password) {
                 if (user.isActive) {
-                  const data = {
-                    access: user.toJSON(),
-                    refresh: { _id: user._id, password: user.password },
-                    shortExpiresIn: "10m", // 10 minutes
-                    longExpiresIn: "3d", // 3 days
-                  };
-
                   res.send({
                     error: false,
-                    token: {
-                      access: jwt.sign(data.access, process.env.ACCESS_KEY, {
-                        expiresIn: data.shortExpiresIn,
-                      }),
-                      refresh: null,
-                    },
+                    token: setToken(user, true),
                   });
                 } else {
                   res.errorStatusCode = 401;
