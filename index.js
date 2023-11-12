@@ -63,6 +63,8 @@ app.use("/toppings", require("./src/routes/topping"));
 // Pizza:
 app.use("/pizzas", require("./src/routes/pizza"));
 
+// Order:
+app.use("/orders", require("./src/routes/order"));
 // errorHandler:
 app.use(require("./src/middlewares/errorHandler"));
 
