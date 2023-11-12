@@ -57,6 +57,8 @@ app.all("/", (req, res) => {
 // User:
 app.use("/users", require("./src/routes/user"));
 /* ------------------------------------------------------- */
+// Topping:
+app.use("/toppings", require("./src/routes/topping"));
 
 // errorHandler:
 app.use(require("./src/middlewares/errorHandler"));
