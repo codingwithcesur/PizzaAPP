@@ -7,8 +7,6 @@ const { mongoose } = require("../configs/dbConnection");
 /* ------------------------------------------------------- */
 // Pizza Model:
 
-const passwordEncrypt = require("../helpers/passwordEncrypt");
-
 const PizzaSchema = new mongoose.Schema(
   {
     name: {

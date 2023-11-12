@@ -7,8 +7,6 @@ const { mongoose } = require("../configs/dbConnection");
 /* ------------------------------------------------------- */
 // Order Model:
 
-const passwordEncrypt = require("../helpers/passwordEncrypt");
-
 const OrderSchema = new mongoose.Schema(
   {
     userId: {
