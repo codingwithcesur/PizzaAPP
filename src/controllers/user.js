@@ -22,7 +22,7 @@ module.exports = {
     const data = await res.getModelList(User);
     res.status(200).send({
       error: false,
-      details: res.getModelListDetails(User),
+      details: await res.getModelListDetails(User),
       data,
     });
   },
@@ -46,7 +46,7 @@ module.exports = {
     const data = await User.findOne({ _id: req.params.id });
     res.status(200).send({
       error: false,
-      details: res.getModelListDetails(User),
+      details: await res.getModelListDetails(User),
       data,
     });
   },
