@@ -54,9 +54,12 @@ app.all("/", (req, res) => {
   });
 });
 
+/* ------------------------------------------------------- */
+// Auth:
+app.use("/auth", require("./src/routes/auth"));
 // User:
 app.use("/users", require("./src/routes/user"));
-/* ------------------------------------------------------- */
+
 // Topping:
 app.use("/toppings", require("./src/routes/topping"));
 
@@ -65,6 +68,8 @@ app.use("/pizzas", require("./src/routes/pizza"));
 
 // Order:
 app.use("/orders", require("./src/routes/order"));
+
+/* ------------------------------------------------------- */
 // errorHandler:
 app.use(require("./src/middlewares/errorHandler"));
 
