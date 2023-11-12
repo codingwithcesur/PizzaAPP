@@ -3,7 +3,7 @@
     NODEJS EXPRESS | CLARUSWAY FullStack Team
 ------------------------------------------------------- */
 // Topping Controller:
-const Topping = require("../models/Topping");
+const Topping = require("../models/topping");
 
 module.exports = {
   list: async (req, res) => {
