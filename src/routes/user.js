@@ -1,9 +1,16 @@
-"use strict"
+"use strict";
 /* -------------------------------------------------------
     NODEJS EXPRESS | CLARUSWAY FullStack Team
 ------------------------------------------------------- */
-const router = require('express').Router()
+const router = require("express").Router();
 /* ------------------------------------------------------- */
+// Controllers:
+const user = require("../controllers/user");
+
+// URL: /users
+router.route("/").get(user.list).post(user.create);
+
+router.route("/:id").get(user.read).put(user.update).delete(user.delete);
 
 /* ------------------------------------------------------- */
-module.exports = router
+module.exports = router;
