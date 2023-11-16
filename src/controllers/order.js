@@ -1,9 +1,9 @@
 "use strict";
 
 /* ------------------------------------------------------- */
-// Pizza Controller:
-const Pizza = require("../models/order");
-
+// Order Controller:
+const Order = require("../models/order");
+const Pizza = require("../models/pizza");
 module.exports = {
   list: async (req, res) => {
     /*
@@ -18,20 +18,26 @@ module.exports = {
                 </ul>
             `
         */
-    const data = await res.getModelList(Pizza);
+    const data = await res.getModelList(Order);
     res.status(200).send({
       error: false,
-      details: await res.getModelListDetails(Pizza),
+      details: await res.getModelListDetails(Order),
       data,
     });
   },
   create: async (req, res) => {
     /*
             #swagger.tags = ["Order"]
-            #swagger.summary = "Create Pizza"
+            #swagger.summary = "Create Order"
         */
 
-    const data = await Pizza.create(req.body);
+    // Calcs
+    if (!req.body?.price) {
+      const dataOrder = await Order.findOne({ _id: req.body.pizzaId });
+    }
+    req.body.totalPrice = req.body.price * req.body.quantity;
+
+    const data = await Order.create(req.body);
     res.status(201).send({
       error: false,
       data,
@@ -40,33 +46,33 @@ module.exports = {
   read: async (req, res) => {
     /*
             #swagger.tags = ["Order"]
-            #swagger.summary = "Get Single Pizza"
+            #swagger.summary = "Get Single Order"
         */
-    const data = await Pizza.findOne({ _id: req.params.id });
+    const data = await Order.findOne({ _id: req.params.id });
     res.status(200).send({
       error: false,
-      details: await res.getModelListDetails(Pizza),
+      details: await res.getModelListDetails(Order),
       data,
     });
   },
   update: async (req, res) => {
     /*
             #swagger.tags = ["Order"]
-            #swagger.summary = "Update Pizza"
+            #swagger.summary = "Update Order"
         */
-    const data = await Pizza.updateOne({ _id: req.params.id }, req.body);
+    const data = await Order.updateOne({ _id: req.params.id }, req.body);
     res.status(202).send({
       error: false,
       data,
-      new: await Pizza.findOne({ _id: req.params.id }),
+      new: await Order.findOne({ _id: req.params.id }),
     });
   },
   delete: async (req, res) => {
     /*
             #swagger.tags = ["Order"]
-            #swagger.summary = "Delete Pizza"
+            #swagger.summary = "Delete Order"
         */
-    const data = await Pizza.deleteOne({ _id: req.params.id });
+    const data = await Order.deleteOne({ _id: req.params.id });
     res.status(data.deletedCount ? 204 : 404).send({
       error: !data.deletedCount,
       data,
