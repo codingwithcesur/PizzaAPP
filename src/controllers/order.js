@@ -32,8 +32,10 @@ module.exports = {
         */
 
     // Calcs
+    req.body.quantity = req.body?.quantity || 1;
     if (!req.body?.price) {
-      const dataOrder = await Order.findOne({ _id: req.body.pizzaId });
+      const dataPizza = await Pizza.findOne({ _id: req.body.pizzaId });
+      req.body.price = dataPizza.price;
     }
     req.body.totalPrice = req.body.price * req.body.quantity;
 
@@ -60,6 +62,14 @@ module.exports = {
             #swagger.tags = ["Order"]
             #swagger.summary = "Update Order"
         */
+    // Calcs
+    req.body.quantity = req.body?.quantity || 1;
+    if (!req.body?.price) {
+      const dataOrder = await Order.findOne({ _id: req.params.id });
+      req.body.price = dataOrder.price;
+    }
+    req.body.totalPrice = req.body.price * req.body.quantity;
+
     const data = await Order.updateOne({ _id: req.params.id }, req.body);
     res.status(202).send({
       error: false,
