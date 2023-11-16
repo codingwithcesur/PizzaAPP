@@ -18,7 +18,12 @@ module.exports = {
                 </ul>
             `
         */
-    const data = await res.getModelList(Order);
+    const data = await res.getModelList(Order, {}, ["pizzaId", "userId"]);
+    // const data = await res.getModelList(Order, {}, [
+    //   { path: "pizzaId", populate: "toppings" },
+    //   "userId",
+    // ]); // Get Toppings Info Also
+
     res.status(200).send({
       error: false,
       details: await res.getModelListDetails(Order),
