@@ -10,7 +10,7 @@ module.exports = function (userData, isRefresh = false) {
   const data = {
     access: userData.toJSON(),
     refresh: { _id: userData._id, password: userData.password },
-    shortExpiresIn: "10m",
+    shortExpiresIn: "30m",
     longExpiresIn: "3d",
   };
 

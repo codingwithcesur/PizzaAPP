@@ -58,7 +58,10 @@ module.exports = {
             #swagger.tags = ["Order"]
             #swagger.summary = "Get Single Order"
         */
-    const data = await Order.findOne({ _id: req.params.id });
+    const data = await Order.findOne({ _id: req.params.id }).populate([
+      "pizzaId",
+      "userId",
+    ]);
     res.status(200).send({
       error: false,
       details: await res.getModelListDetails(Order),
